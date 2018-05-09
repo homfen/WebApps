@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>WebChat</title>
+        <link rel="stylesheet" href="node_modules/electron-tabs/electron-tabs.css">
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <body>
+        <div class="etabs-tabgroup" style="-webkit-app-region: drag">
+            <div class="etabs-tabs"></div>
+            <div class="etabs-buttons">
+                <i class="top-icon back"></i>
+                <i class="top-icon forward"></i>
+                <i class="top-icon refresh"></i>
+                <i class="top-icon add"></i>
+                <i class="top-icon close"></i>
+            </div>
+        </div>
+        <div class="etabs-views"></div>
+        <div class="mask"></div>
+        <div class="add-dialog">
+            <h2>Add a page</h2>
+            <div>
+                <label for="name">Name:</label><input id="name" type="text">
+            </div>
+            <div>
+                <label for="url">Url:</label><input id="url" type="text">
+            </div>
+            <div class="buttons">
+                <button type="button" class="submit">Submit</button>
+                <button type="button" class="cancel">Cancel</button>
+            </div>
+        </div>
+        <script src="./index.js"></script>
+    </body>
+</html>
