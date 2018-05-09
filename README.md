@@ -14,4 +14,4 @@ Add
 Exit
 
 ## Snapshot
-![WebApps](./images/snapshot.png)
+![WebApps](./images/Snapshot.png)
