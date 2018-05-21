@@ -93,12 +93,13 @@ function addTab(tab, index) {
         active: index === 0
     });
     if (!/-Popup$/.test(tab.name)) {
-        newTab.webview.addEventListener('new-window', e => {
-            let url = e.url;
-            let name = `${tab.name}-Popup`;
-            let popupTab = {url, name};
-            tabs.push(popupTab);
-            addTab(popupTab, tabs.length - 1);
+        newTab.webview.addEventListener('new-window', ({url, frameName}) => {
+            if (frameName !== '_self') {
+                let name = `${tab.name}-Popup`;
+                let popupTab = {url, name};
+                tabs.push(popupTab);
+                addTab(popupTab, tabs.length - 1);
+            }
         });
     }
 }
