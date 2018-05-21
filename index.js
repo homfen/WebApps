@@ -85,12 +85,21 @@ function setStore(tabs) {
 }
 
 function addTab(tab, index) {
-    tabGroup.addTab({
+    let newTab = tabGroup.addTab({
         title: tab.name,
         src: tab.url,
         visible: true,
         closable: true,
         active: index === 0
     });
+    if (!/-Popup$/.test(tab.name)) {
+        newTab.webview.addEventListener('new-window', e => {
+            let url = e.url;
+            let name = `${tab.name}-Popup`;
+            let popupTab = {url, name};
+            tabs.push(popupTab);
+            addTab(popupTab, tabs.length - 1);
+        });
+    }
 }
 
