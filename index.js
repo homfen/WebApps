@@ -21,6 +21,7 @@ $(() => {
     $('.submit').on('click', () => {
         let name = $('#name').val().trim();
         let url = $('#url').val().trim();
+        let useragent = $('#useragent').val().trim();
         if (!name || !url) {
             alert('Please enter name and url.');
             return;
@@ -32,7 +33,8 @@ $(() => {
         }
         let tab = {
             name,
-            url
+            url,
+            useragent
         };
         tabs.push(tab);
         setStore(tabs);
@@ -88,9 +90,12 @@ function addTab(tab, index) {
     let newTab = tabGroup.addTab({
         title: tab.name,
         src: tab.url,
+        webviewAttributes: {
+            useragent: tab.useragent || ''
+        },
         visible: true,
         closable: true,
-        active: index === 0
+        active: index === 0,
     });
     if (!/-Popup$/.test(tab.name)) {
         newTab.webview.addEventListener('new-window', ({url, frameName}) => {
