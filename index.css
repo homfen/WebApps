@@ -79,6 +79,7 @@ html, body {
 }
 
 .add-dialog div {
+    position: relative;
     margin: 10px 0;
     line-height: 30px;
 }
@@ -96,6 +97,13 @@ html, body {
     border-radius: 3px;
     border: 1px solid #aaa;
     padding: 0 5px;
+}
+
+.add-dialog span {
+    position: absolute;
+    top: 4px;
+    right: -2px;
+    color: red;
 }
 
 .add-dialog .buttons {
