@@ -7,7 +7,7 @@ html, body {
 .top-bar {
     padding: 0 10px;
     padding-right: 180px;
-    padding-left: 25px;
+    padding-left: 30px;
     right: 0;
     height: 26px;
     background: #fff;
@@ -15,7 +15,7 @@ html, body {
 
 #showTabs {
     position: absolute;
-    left: 0;
+    left: 5px;
     top: 0;
     width: 20px;
     height: 20px;
@@ -60,6 +60,8 @@ html, body {
     top: 32px;
     background: none;
     height: inherit;
+    width: 200px;
+    height: 600px;
 }
 
 .etabs-tab {
