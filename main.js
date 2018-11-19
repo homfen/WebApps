@@ -6,7 +6,7 @@ const url = require('url');
 // 当 JavaScript 对象被垃圾回收， window 会被自动地关闭
 let win;
 
-function createWindow () {
+function createWindow() {
     // 创建浏览器窗口。
     win = new BrowserWindow({
         width: 1001,
@@ -15,6 +15,8 @@ function createWindow () {
         frame: false,
         resizable: true
     });
+
+    // win.webContents.openDevTools();
 
     // 然后加载应用的 index.html。
     win.loadURL(url.format({
@@ -54,15 +56,15 @@ app.on('ready', () => {
             {
                 label: 'Edit',
                 submenu: [
-                    { role: 'undo' },
-                    { role: 'redo' },
-                    { type: 'separator' },
-                    { role: 'cut' },
-                    { role: 'copy' },
-                    { role: 'paste' },
-                    { role: 'pasteandmatchstyle' },
-                    { role: 'delete' },
-                    { role: 'selectall' }
+                    {role: 'undo'},
+                    {role: 'redo'},
+                    {type: 'separator'},
+                    {role: 'cut'},
+                    {role: 'copy'},
+                    {role: 'paste'},
+                    {role: 'pasteandmatchstyle'},
+                    {role: 'delete'},
+                    {role: 'selectall'}
                 ]
             }
         ]));
@@ -89,4 +91,4 @@ app.on('activate', () => {
 // 在这个文件中，你可以续写应用剩下主进程代码。
 // 也可以拆分成几个文件，然后用 require 导入。
 
-app.setName('WebChat');
+app.setName('WebApps');

@@ -2,6 +2,8 @@ const {ipcRenderer} = require('electron');
 const TabGroup = require("electron-tabs");
 const $ = require("jquery");
 
+let tabShow = false;
+
 let tabs = getStore();
 let tabGroup = new TabGroup();
 tabGroup.on('tab-removed', tab => {
@@ -9,11 +11,23 @@ tabGroup.on('tab-removed', tab => {
     tabs = tabs.filter(tab => tab.name !== title);
     setStore(tabs);
 });
+tabGroup.on('tab-active', tab => {
+    tabShow = false;
+    $('.etabs-tabgroup').toggle(tabShow);
+    $('.address input').val(tab.webview.src);
+    $(document.body).scrollTop(0);
+});
 tabs.map((tab, index) => {
     addTab(tab, index);
 });
 
 $(() => {
+    $('#showTabs').on('click', () => {
+        tabShow = !tabShow;
+        $('.etabs-tabgroup').toggle(tabShow);
+    });
+    $('.etabs-tab').on('click', () => {
+    });
     $('.add').on('click', () => {
         $('.mask').show();
         $('.add-dialog').show();
@@ -95,7 +109,12 @@ function addTab(tab, index) {
         },
         visible: true,
         closable: true,
-        active: index === 0,
+        active: index === 0
+    });
+    newTab.webview.addEventListener('load-commit', e => {
+        if (tabGroup.getActiveTab() === newTab) {
+            $('.address input').val(e.url);
+        }
     });
     if (!/-Popup$/.test(tab.name)) {
         newTab.webview.addEventListener('new-window', ({url, frameName}) => {
