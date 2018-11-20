@@ -124,8 +124,10 @@ function addTab(tab, index, resetTitle) {
             let name = `${tab.name}-Popup`;
             let popupTab = {url, name};
             tabs.push(popupTab);
-            addTab(popupTab, tabs.length - 1, true);
+            let popTab = addTab(popupTab, tabs.length - 1, true);
+            popTab.activate();
         }
     });
+    return newTab;
 }
 
