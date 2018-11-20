@@ -15,7 +15,6 @@ tabGroup.on('tab-active', tab => {
     tabShow = false;
     $('.etabs-tabgroup').toggle(tabShow);
     $('.address input').val(tab.webview.src);
-    $(document.body).scrollTop(0);
 });
 tabs.map((tab, index) => {
     addTab(tab, index);
@@ -112,7 +111,7 @@ function addTab(tab, index) {
         active: index === 0
     });
     newTab.webview.addEventListener('load-commit', e => {
-        if (tabGroup.getActiveTab() === newTab) {
+        if (tabGroup.getActiveTab() === newTab && e.url !== 'about:blank') {
             $('.address input').val(e.url);
         }
     });
