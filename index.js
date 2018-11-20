@@ -99,7 +99,7 @@ function setStore(tabs) {
     localStorage.setItem('tabs', JSON.stringify(tabs));
 }
 
-function addTab(tab, index) {
+function addTab(tab, index, resetTitle) {
     let newTab = tabGroup.addTab({
         title: tab.name,
         src: tab.url,
@@ -115,15 +115,17 @@ function addTab(tab, index) {
             $('.address input').val(e.url);
         }
     });
-    if (!/-Popup$/.test(tab.name)) {
-        newTab.webview.addEventListener('new-window', ({url, frameName}) => {
-            if (frameName !== '_self') {
-                let name = `${tab.name}-Popup`;
-                let popupTab = {url, name};
-                tabs.push(popupTab);
-                addTab(popupTab, tabs.length - 1);
-            }
-        });
-    }
+    resetTitle && newTab.webview.addEventListener('did-finish-load', e => {
+        let title = newTab.webview.getTitle();
+        newTab.setTitle(title);
+    });
+    newTab.webview.addEventListener('new-window', ({url, frameName}) => {
+        if (frameName !== '_self') {
+            let name = `${tab.name}-Popup`;
+            let popupTab = {url, name};
+            tabs.push(popupTab);
+            addTab(popupTab, tabs.length - 1, true);
+        }
+    });
 }
 

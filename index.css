@@ -70,6 +70,13 @@ html, body {
     float: none !important;
 }
 
+.etabs-tab-title {
+    overflow: hidden;
+    width: 160px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .etabs-tab-buttons {
     float: right;
 }
