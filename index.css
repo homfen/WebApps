@@ -10,7 +10,7 @@ html, body {
     padding-left: 30px;
     right: 0;
     height: 26px;
-    background: #fff;
+    background: #d4d4d4;
 }
 
 #showTabs {
@@ -40,7 +40,7 @@ html, body {
     width: 100%;
     border-radius: 10px;
     border: none;
-    background: #efefef;
+    background: #fff;
     text-indent: 10px;
     outline: none;
 }
